@@ -3,58 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javeed A J | Electronics and Communication Engineer</title>
+    <title>Catch the Colorful Circle</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Javeed A J</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <h1>Catch the Colorful Circle!</h1>
+        <p>Click on the circles as fast as you can!</p>
+        <button id="startGame">Start Game</button>
     </header>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi I am Javeed A J, completed my degree in Electronics and Communication Engineering.
-           I am very passionate about technology and embedded systems. i have done several projects on Robotics, IoT and Automation.
-           during my free time i love to do DIY electronic projects and reda books.</p>
-    </section>
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-gallery">
-            <h3>Design and Implementaion of Quadcopter for Delivering Healthcare Supplies.</h3>
-            <p>We have developed a quadcopter using APM 2.8 flight controller for delivering health care supplies in remote areas.
-               our developed drone has automatic transport system, just we have feed the coordinates of the location, it will automatically deliver the 
-               emergency supplies.</p>
+    <main>
+        <div id="gameArea"></div>
+        <div id="scoreBoard">
+            <p>Score: <span id="score">0</span></p>
         </div>
-    </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:javeedaj17@gmail.com">javeedaj17@gmail.com</a></p>
-    </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-<script>
-    function setup() {
-        createCanvas(windowWidth, windowHeight);
-        noLoop(); // Prevent continuous redraw
-    }
-    
-    function draw() {
-        background(255);
-        // Create generative art
-        for (let i = 0; i < 100; i++) {
-            ellipse(random(width), random(height), random(10, 50));
-        }
-    }
-</script>
-
+    </main>
     <footer>
-        <p>&copy; Your Name</p>
+        <p>&copy; 2024 Creative Game Studio</p>
     </footer>
 </body>
 </html>
