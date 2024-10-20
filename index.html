@@ -3,24 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catch the Colorful Circle</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Color Quest</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #ffcc33, #ff6699);
+        }
+        .game-container {
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+            margin-bottom: 20px;
+        }
+        .color-cell {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .color-cell:hover {
+            transform: scale(1.1);
+        }
+        #message {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        #start-btn {
+            padding: 10px 20px;
+            background-color: #ff6699;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        #start-btn:hover {
+            background-color: #ff3377;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Catch the Colorful Circle!</h1>
-        <p>Click on the circles as fast as you can!</p>
-        <button id="startGame">Start Game</button>
-    </header>
-    <main>
-        <div id="gameArea"></div>
-        <div id="scoreBoard">
-            <p>Score: <span id="score">0</span></p>
+    <div class="game-container">
+        <h1>Color Quest</h1>
+        <p id="message">Match the highlighted color!</p>
+        <div class="color-grid" id="colorGrid">
+            <!-- Color cells will be generated here -->
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Creative Game Studio</p>
-    </footer>
+        <button id="start-btn">Start Game</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
