@@ -1,43 +1,43 @@
-let score = 0;
-let gameInterval;
-const gameArea = document.getElementById('gameArea');
-const scoreDisplay = document.getElementById('score');
+const colorGrid = document.getElementById('colorGrid');
+const message = document.getElementById('message');
+const startBtn = document.getElementById('start-btn');
 
-document.getElementById('startGame').addEventListener('click', startGame);
+const colors = ['#FF5733', '#33FF57', '#5733FF', '#FF33A6', '#33D4FF', '#FFD433', '#A633FF', '#33FFA3'];
+let targetColor;
+let gameActive = false;
+
+function generateGrid() {
+    colorGrid.innerHTML = '';
+    const randomColors = [...colors].sort(() => 0.5 - Math.random());
+    randomColors.forEach(color => {
+        const colorCell = document.createElement('div');
+        colorCell.classList.add('color-cell');
+        colorCell.style.backgroundColor = color;
+        colorCell.addEventListener('click', () => checkColor(color));
+        colorGrid.appendChild(colorCell);
+    });
+}
 
 function startGame() {
-    score = 0;
-    scoreDisplay.textContent = score;
-    gameArea.innerHTML = ''; // Clear previous circles
-    gameInterval = setInterval(createCircle, 1000); // Create a new circle every second
+    gameActive = true;
+    targetColor = colors[Math.floor(Math.random() * colors.length)];
+    message.innerHTML = `Find this color: <span style="color: ${targetColor}">${targetColor}</span>`;
+    generateGrid();
 }
 
-function createCircle() {
-    const circle = document.createElement('div');
-    const size = Math.random() * (100 - 30) + 30; // Random size between 30 and 100
-    circle.style.width = `${size}px`;
-    circle.style.height = `${size}px`;
-    circle.style.backgroundColor = getRandomColor();
-    circle.classList.add('circle');
-
-    // Random position within the game area
-    circle.style.top = `${Math.random() * (gameArea.clientHeight - size)}px`;
-    circle.style.left = `${Math.random() * (gameArea.clientWidth - size)}px`;
-
-    circle.addEventListener('click', () => {
-        score++;
-        scoreDisplay.textContent = score;
-        circle.remove(); // Remove the circle on click
-    });
-
-    gameArea.appendChild(circle);
-}
-
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+function checkColor(selectedColor) {
+    if (!gameActive) return;
+    
+    if (selectedColor === targetColor) {
+        message.textContent = 'Correct! You found the color!';
+        gameActive = false;
+        startBtn.textContent = 'Play Again';
+    } else {
+        message.textContent = 'Try again!';
     }
-    return color;
 }
+
+startBtn.addEventListener('click', () => {
+    startGame();
+    startBtn.textContent = 'Restart Game';
+});
